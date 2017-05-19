@@ -13,7 +13,8 @@
 		6B0F7C161ECF56C000F3815D /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0F7C141ECF56C000F3815D /* Quick.framework */; };
 		6B0F7C181ECF56C900F3815D /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B0F7C131ECF56C000F3815D /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6B0F7C191ECF56C900F3815D /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 6B0F7C141ECF56C000F3815D /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6B0F7C1B1ECF56DA00F3815D /* DummySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0F7C1A1ECF56DA00F3815D /* DummySpec.swift */; };
+		6B0F7C1B1ECF56DA00F3815D /* SavoryViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0F7C1A1ECF56DA00F3815D /* SavoryViewSpec.swift */; };
+		6B0F7C1D1ECF579100F3815D /* SavoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0F7C1C1ECF579100F3815D /* SavoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +49,8 @@
 		6B0F7C081ECF55F000F3815D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6B0F7C131ECF56C000F3815D /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		6B0F7C141ECF56C000F3815D /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
-		6B0F7C1A1ECF56DA00F3815D /* DummySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummySpec.swift; sourceTree = "<group>"; };
+		6B0F7C1A1ECF56DA00F3815D /* SavoryViewSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavoryViewSpec.swift; sourceTree = "<group>"; };
+		6B0F7C1C1ECF579100F3815D /* SavoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				6B0F7BFB1ECF55F000F3815D /* Savory.h */,
 				6B0F7BFC1ECF55F000F3815D /* Info.plist */,
+				6B0F7C1C1ECF579100F3815D /* SavoryView.swift */,
 			);
 			path = Savory;
 			sourceTree = "<group>";
@@ -104,7 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				6B0F7C081ECF55F000F3815D /* Info.plist */,
-				6B0F7C1A1ECF56DA00F3815D /* DummySpec.swift */,
+				6B0F7C1A1ECF56DA00F3815D /* SavoryViewSpec.swift */,
 			);
 			path = SavoryTests;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 				TargetAttributes = {
 					6B0F7BF71ECF55F000F3815D = {
 						CreatedOnToolsVersion = 8.3.2;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					6B0F7C001ECF55F000F3815D = {
@@ -230,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B0F7C1D1ECF579100F3815D /* SavoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,7 +242,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B0F7C1B1ECF56DA00F3815D /* DummySpec.swift in Sources */,
+				6B0F7C1B1ECF56DA00F3815D /* SavoryViewSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +361,7 @@
 		6B0F7C0D1ECF55F000F3815D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -367,6 +373,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = org.nandiin.Savory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -374,6 +381,7 @@
 		6B0F7C0E1ECF55F000F3815D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -392,6 +400,7 @@
 		6B0F7C101ECF55F000F3815D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -409,6 +418,7 @@
 		6B0F7C111ECF55F000F3815D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
