@@ -13,4 +13,5 @@ public class SavoryView: UITableView {
         get { return UITableViewAutomaticDimension }
         set { }
     }
+    public var stateProvider: SavoryStateProvider!
 }
