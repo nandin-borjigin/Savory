@@ -8,36 +8,14 @@
 
 import Quick
 import Nimble
-import Savory
+@testable import Savory
 
-class DummyView: SavoryView, UITableViewDataSource {
+class DummyView: SavoryView {
     var indexPath: IndexPath!
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    init() {
-        super.init(frame: CGRect(x: 0, y: 0, width: 100, height: 100), style: .plain)
-        self.dataSource = self
-        self.register(UITableViewCell.self, forCellReuseIdentifier: "dummy")
-    }
     
     override func dequeueReusableCell(withIdentifier identifier: String, for indexPath: IndexPath) -> UITableViewCell {
         self.indexPath = indexPath
         return super.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "dummy", for: indexPath)
     }
 }
 
@@ -45,12 +23,15 @@ class SavoryViewSpec: QuickSpec {
     override func spec() {
         describe("SavoryView") {
             var view: SavoryView!
+            
             beforeEach {
                 view = SavoryView()
             }
+            
             it("is a subclass of UITableView") {
                 expect(view).to(beAKindOf(UITableView.self))
             }
+            
             describe("rowHeight") {
                 it("equals UITableViewAutomaticDimension") {
                     expect(view.rowHeight) == UITableViewAutomaticDimension
@@ -60,6 +41,32 @@ class SavoryViewSpec: QuickSpec {
                     expect(view.rowHeight) == UITableViewAutomaticDimension
                 }
             }
+            
+            describe("estimatedRowHeight") {
+                it("is greater than 0") {
+                    expect(view.estimatedRowHeight) > 0
+                }
+                it("is writable") {
+                    let old = view.estimatedRowHeight
+                    view.estimatedRowHeight = old + 10
+                    expect(view.estimatedRowHeight) == old + 10
+                }
+            }
+            
+            describe("dataSource") {
+                it("is a instance of SavoryTableViewDataSource") {
+                    expect(view.dataSource).to(beAnInstanceOf(SavoryTableViewDataSource.self))
+                }
+                it("is not writable") {
+                    let old = view.dataSource
+                    let new = SavoryTableViewDataSource()
+                    expect(old) !== new
+                    view.dataSource = new
+                    expect(view.dataSource) !== new
+                    expect(view.dataSource) === old
+                }
+            }
+            
             describe("dequeue after an expanded panel and a collapsed panel") {
                 var view: DummyView!
                 beforeEach {
@@ -70,6 +77,7 @@ class SavoryViewSpec: QuickSpec {
                     view.register(UITableViewCell.self, forCellReuseIdentifier: "header")
                     view.bodyIdentifier = "body"
                     view.register(UITableViewCell.self, forCellReuseIdentifier: "body")
+                    view.estimatedRowHeight = 100
                 }
                 context("header") {
                     var cell: SavoryHeaderCell!

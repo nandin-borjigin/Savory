@@ -16,6 +16,11 @@ open class SavoryView: UITableView {
         set { }
     }
     
+    override open var dataSource: UITableViewDataSource? {
+        get { return SavoryTableViewDataSource.shared }
+        set { }
+    }
+   
     public var savoryDelegate: SavoryViewDelegate!
     
     public var stateProvider: SavoryStateProvider!
@@ -32,11 +37,22 @@ open class SavoryView: UITableView {
         return dequeueReusableCell(withIdentifier: bodyIdentifier, for: savoryDelegate.indexPathFor(bodyAt: index, in: self))
     }
     
+    public init() {
+        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: 0), style: .plain)
+        sharedInit()
+    }
+    
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        sharedInit()
     }
     
     public override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
+        sharedInit()
+    }
+    
+    private func sharedInit() {
+        estimatedRowHeight = 100
     }
 }
