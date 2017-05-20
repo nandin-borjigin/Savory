@@ -14,6 +14,7 @@ class SavoryTableViewDelegate: NSObject, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let view = tableView as? SavoryView else {
             precondition(false, "This delegate must be used upon SavoryView")
+            return
         }
         
         let cellType = view.savoryDelegate.cellType(at: indexPath, in: view)

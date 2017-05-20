@@ -23,6 +23,7 @@ internal class SavoryTableViewDataSource: NSObject, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let view = tableView as? SavoryView else {
             precondition(false, "This data source must be used upon SavoryView")
+            return UITableViewCell()
         }
         
         let cellType = view.savoryDelegate.cellType(at: indexPath, in: view)
