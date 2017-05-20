@@ -40,6 +40,12 @@ class SavoryTableViewDataSourceSpec: QuickSpec {
                     expect(dataSource.tableView(UITableView(), numberOfRowsInSection: 0)) == 0
                 }
             }
+            context("in a SavoryView with no stateProvider") {
+                it("returns 0") {
+                    view.stateProvider = nil
+                    expect(dataSource.tableView(view, numberOfRowsInSection: 0)) == 0
+                }
+            }
             context("in a SavoryView with first panel expanded and others collapsed") {
                 it("returns 4") {
                     expect(dataSource.tableView(view, numberOfRowsInSection: 0)) == 4

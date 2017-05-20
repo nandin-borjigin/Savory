@@ -17,7 +17,7 @@ internal class SavoryTableViewDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let view = tableView as? SavoryView else { return 0 }
-        return (0..<view.stateProvider.count).reduce(0) { $0 + (view.stateProvider[$1] == .collapsed ? 1 : 2) }
+        return (0..<(view.stateProvider?.count ?? 0)).reduce(0) { $0 + (view.stateProvider[$1] == .collapsed ? 1 : 2) }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
