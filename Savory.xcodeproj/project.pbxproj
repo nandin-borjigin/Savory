@@ -133,11 +133,11 @@
 				6B0F7C081ECF55F000F3815D /* Info.plist */,
 				6B5AA6D51ED0208100BBDB9E /* Fixtures.swift */,
 				6B0F7C1A1ECF56DA00F3815D /* SavoryViewSpec.swift */,
-				6B0F7C291ECF61B400F3815D /* SavoryViewDelegateSpec.swift */,
 				6B5AA6D31ED014FC00BBDB9E /* SavoryPanelStateSpec.swift */,
-				6B0F7C4D1ECF922A00F3815D /* SavoryTableViewDataSourceSpec.swift */,
 				6B0F7C231ECF5C9F00F3815D /* SimpleStateProviderSpec.swift */,
+				6B0F7C291ECF61B400F3815D /* SavoryViewDelegateSpec.swift */,
 				6B5AA6D11ED00BC800BBDB9E /* SavoryTableViewDelegateSpec.swift */,
+				6B0F7C4D1ECF922A00F3815D /* SavoryTableViewDataSourceSpec.swift */,
 			);
 			path = SavoryTests;
 			sourceTree = "<group>";

@@ -19,6 +19,8 @@ class SavoryTableViewDelegate: NSObject, UITableViewDelegate {
         
         let cellType = view.savoryDelegate.cellType(at: indexPath, in: view)
         
+        let pathToModify = IndexPath(row: indexPath.row + 1, section: indexPath.section)
+        
         var index: Int
         
         switch cellType {
@@ -27,13 +29,16 @@ class SavoryTableViewDelegate: NSObject, UITableViewDelegate {
             if view.stateProvider[index] == .expanded {
                 view.savoryDelegate.willCollapse?(panelAt: index, in: view)
                 view.stateProvider[index] = !view.stateProvider[index]
+                view.deleteRows(at: [pathToModify], with: .fade)
                 view.savoryDelegate.didCollapse?(panelAt: index, in: view)
             } else {
                 view.savoryDelegate.willExpand?(panelAt: index, in: view)
                 view.stateProvider[index] = !view.stateProvider[index]
+                view.insertRows(at: [pathToModify], with: .fade)
                 view.savoryDelegate.didExpand?(panelAt: index, in: view)
             }
-        case .body(let i) : index = i
+        case .body(let i):
+            index = i
         }
         
         view.savoryDelegate.didSelect?(panelAt: index, in: view)

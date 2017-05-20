@@ -22,10 +22,10 @@ class SavoryTableViewDelegateSpec: QuickSpec {
                 }
             }
             context("in a SavoryView with first panel expanded and others collapsed") {
-                var view: SavoryView!
+                var view: DummyView!
                 var dummyDelegate: DummyDelegate!
                 beforeEach {
-                    view = SavoryView()
+                    view = DummyView()
                     dummyDelegate = DummyDelegate()
                     view.savoryDelegate = dummyDelegate
                     view.stateProvider = SimpleStateProvider([.expanded, .collapsed, .collapsed])
@@ -65,6 +65,10 @@ class SavoryTableViewDelegateSpec: QuickSpec {
                     it("does not notify SavoryViewDelegate.didExpandPanelAt") {
                         expect(dummyDelegate.didExpand).to(beNil())
                     }
+                    it("deletes the row at 0 - 1 with fade animation") {
+                        expect(view.delete?.paths) == [IndexPath(row: 1, section: 0)]
+                        expect(view.delete?.animation) == UITableViewRowAnimation.fade
+                    }
                 }
                 context("0 - 2") {
                     beforeEach {
@@ -88,6 +92,10 @@ class SavoryTableViewDelegateSpec: QuickSpec {
                     }
                     it("does not notify SavoryViewDelegate.didCollapsePanelAt") {
                         expect(dummyDelegate.didCollapse).to(beNil())
+                    }
+                    it("inserts one row at 0 - 3 with fade animation") {
+                        expect(view.insert?.paths) == [IndexPath(row: 3, section: 0)]
+                        expect(view.insert?.animation) == UITableViewRowAnimation.fade
                     }
                 }
             }

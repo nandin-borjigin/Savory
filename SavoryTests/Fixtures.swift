@@ -11,10 +11,22 @@ import Nimble
 
 class DummyView: SavoryView {
     var indexPath: IndexPath!
+    var delete: (paths: [IndexPath], animation: UITableViewRowAnimation)!
+    var insert: (paths: [IndexPath], animation: UITableViewRowAnimation)!
     
     override func dequeueReusableCell(withIdentifier identifier: String, for indexPath: IndexPath) -> UITableViewCell {
         self.indexPath = indexPath
         return super.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
+    }
+    
+    override func deleteRows(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
+        self.delete = (indexPaths, animation)
+        super.deleteRows(at: indexPaths, with: animation)
+    }
+    
+    override func insertRows(at indexPaths: [IndexPath], with animation: UITableViewRowAnimation) {
+        self.insert = (indexPaths, animation)
+        super.insertRows(at: indexPaths, with: animation)
     }
 }
 
