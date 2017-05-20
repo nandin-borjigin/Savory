@@ -1,0 +1,16 @@
+PODS:
+  - Savory (0.0.4)
+
+DEPENDENCIES:
+  - Savory (from `../`)
+
+EXTERNAL SOURCES:
+  Savory:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Savory: 2a9dd5ecff4f0150ee66dcfb4542f2802f317c17
+
+PODFILE CHECKSUM: f60d7c23cbd168034c94deaef60345aff57fd330
+
+COCOAPODS: 1.2.1
