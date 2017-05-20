@@ -14,6 +14,11 @@ import Savory
 class DummyDelegate: SavoryViewDelegate {
     weak var view: SavoryView!
     var type: SavoryPanelType!
+    var selected: SavoryPanelIndex!
+    var willCollapse: (index: Int, state: SavoryPanelState, view: SavoryView)!
+    var didCollapse: (index: Int, state: SavoryPanelState, view: SavoryView)!
+    var willExpand: (index: Int, state: SavoryPanelState, view: SavoryView)!
+    var didExpand: (index: Int, state: SavoryPanelState, view: SavoryView)!
     func headerCell(forPanelAt index: SavoryPanelIndex, in savoryView: SavoryView) -> UITableViewCell {
         view = savoryView
         type = .header(index)
@@ -23,6 +28,22 @@ class DummyDelegate: SavoryViewDelegate {
         view = savoryView
         type = .body(index)
         return UITableViewCell()
+    }
+    func didSelect(panelAt index: SavoryPanelIndex, in savoryView: SavoryView) {
+        selected = index
+        view = savoryView
+    }
+    func willCollapse(panelAt index: SavoryPanelIndex, in savoryView: SavoryView) {
+        willCollapse = (index, savoryView.stateProvider[index], savoryView)
+    }
+    func didCollapse(panelAt index: SavoryPanelIndex, in savoryView: SavoryView) {
+        didCollapse = (index, savoryView.stateProvider[index], savoryView)
+    }
+    func willExpand(panelAt index: SavoryPanelIndex, in savoryView: SavoryView) {
+        willExpand = (index, savoryView.stateProvider[index], savoryView)
+    }
+    func didExpand(panelAt index: SavoryPanelIndex, in savoryView: SavoryView) {
+        didExpand = (index, savoryView.stateProvider[index], savoryView)
     }
 }
 func match(_ expectedValue: SavoryPanelType) -> MatcherFunc<SavoryPanelType> {

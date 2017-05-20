@@ -6,9 +6,14 @@
 //  Copyright © 2017 Nandiin Borjigin. All rights reserved.
 //
 
-public protocol SavoryViewDelegate {
-    func headerCell(forPanelAt: SavoryPanelIndex, in: SavoryView) -> UITableViewCell
-    func bodyCell(forPanelAt: SavoryPanelIndex, in: SavoryView) -> UITableViewCell
+@objc public protocol SavoryViewDelegate {
+    func headerCell(forPanelAt index: SavoryPanelIndex, in savoryView: SavoryView) -> UITableViewCell
+    func bodyCell(forPanelAt index: SavoryPanelIndex, in savoryView: SavoryView) -> UITableViewCell
+    @objc optional func didSelect(panelAt index: SavoryPanelIndex, in savoryView: SavoryView)
+    @objc optional func willCollapse(panelAt index: SavoryPanelIndex, in savoryView: SavoryView)
+    @objc optional func didCollapse(panelAt index: SavoryPanelIndex, in savoryView: SavoryView)
+    @objc optional func willExpand(panelAt index: SavoryPanelIndex, in savoryView: SavoryView)
+    @objc optional func didExpand(panelAt index: SavoryPanelIndex, in savoryView: SavoryView)
 }
 
 public typealias SavoryPanelIndex = Int

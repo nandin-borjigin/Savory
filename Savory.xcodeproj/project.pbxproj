@@ -22,6 +22,7 @@
 		6B0F7C2E1ECF7CAE00F3815D /* SavoryTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0F7C2D1ECF7CAE00F3815D /* SavoryTableViewDataSource.swift */; };
 		6B0F7C4E1ECF922A00F3815D /* SavoryTableViewDataSourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0F7C4D1ECF922A00F3815D /* SavoryTableViewDataSourceSpec.swift */; };
 		6B5AA6D01ED00ABD00BBDB9E /* SavoryTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5AA6CF1ED00ABD00BBDB9E /* SavoryTableViewDelegate.swift */; };
+		6B5AA6D21ED00BC800BBDB9E /* SavoryTableViewDelegateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5AA6D11ED00BC800BBDB9E /* SavoryTableViewDelegateSpec.swift */; };
 		6B5AA6D41ED014FC00BBDB9E /* SavoryPanelStateSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5AA6D31ED014FC00BBDB9E /* SavoryPanelStateSpec.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		6B0F7C2D1ECF7CAE00F3815D /* SavoryTableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavoryTableViewDataSource.swift; sourceTree = "<group>"; };
 		6B0F7C4D1ECF922A00F3815D /* SavoryTableViewDataSourceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavoryTableViewDataSourceSpec.swift; sourceTree = "<group>"; };
 		6B5AA6CF1ED00ABD00BBDB9E /* SavoryTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavoryTableViewDelegate.swift; sourceTree = "<group>"; };
+		6B5AA6D11ED00BC800BBDB9E /* SavoryTableViewDelegateSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavoryTableViewDelegateSpec.swift; sourceTree = "<group>"; };
 		6B5AA6D31ED014FC00BBDB9E /* SavoryPanelStateSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavoryPanelStateSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +134,7 @@
 				6B5AA6D31ED014FC00BBDB9E /* SavoryPanelStateSpec.swift */,
 				6B0F7C4D1ECF922A00F3815D /* SavoryTableViewDataSourceSpec.swift */,
 				6B0F7C231ECF5C9F00F3815D /* SimpleStateProviderSpec.swift */,
+				6B5AA6D11ED00BC800BBDB9E /* SavoryTableViewDelegateSpec.swift */,
 			);
 			path = SavoryTests;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			files = (
 				6B0F7C2A1ECF61B400F3815D /* SavoryViewDelegateSpec.swift in Sources */,
 				6B5AA6D41ED014FC00BBDB9E /* SavoryPanelStateSpec.swift in Sources */,
+				6B5AA6D21ED00BC800BBDB9E /* SavoryTableViewDelegateSpec.swift in Sources */,
 				6B0F7C1B1ECF56DA00F3815D /* SavoryViewSpec.swift in Sources */,
 				6B0F7C241ECF5C9F00F3815D /* SimpleStateProviderSpec.swift in Sources */,
 				6B0F7C4E1ECF922A00F3815D /* SavoryTableViewDataSourceSpec.swift in Sources */,
