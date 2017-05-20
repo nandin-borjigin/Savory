@@ -10,15 +10,6 @@ import Quick
 import Nimble
 @testable import Savory
 
-class DummyView: SavoryView {
-    var indexPath: IndexPath!
-    
-    override func dequeueReusableCell(withIdentifier identifier: String, for indexPath: IndexPath) -> UITableViewCell {
-        self.indexPath = indexPath
-        return super.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-    }
-}
-
 class SavoryViewSpec: QuickSpec {
     override func spec() {
         describe("SavoryView") {
