@@ -56,6 +56,10 @@ class SavoryViewSpec: QuickSpec {
                     expect(view.dataSource) !== new
                     expect(view.dataSource) === old
                 }
+                it("works") {
+                    view.stateProvider = SimpleStateProvider([.expanded, .collapsed, .collapsed])
+                    expect(view.numberOfRows(inSection: 0)) == view.dataSource?.tableView(view, numberOfRowsInSection: 0)
+                }
             }
             
             describe("delegate") {
