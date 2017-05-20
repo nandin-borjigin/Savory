@@ -23,7 +23,7 @@ open class SavoryView: UITableView {
     }
     
     open override var delegate: UITableViewDelegate? {
-        get { return SavoryTableViewDelegate.shared }
+        get { return super.delegate }
         set { }
     }
    
@@ -61,5 +61,6 @@ open class SavoryView: UITableView {
     private func sharedInit() {
         estimatedRowHeight = 100
         super.dataSource = SavoryTableViewDataSource.shared
+        super.delegate = SavoryTableViewDelegate.shared
     }
 }
