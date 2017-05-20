@@ -7,8 +7,8 @@
 //
 
 @objc public protocol SavoryViewDelegate {
-    func headerCell(forPanelAt index: SavoryPanelIndex, in savoryView: SavoryView) -> UITableViewCell
-    func bodyCell(forPanelAt index: SavoryPanelIndex, in savoryView: SavoryView) -> UITableViewCell
+    func headerCell(forPanelAt index: SavoryPanelIndex, in savoryView: SavoryView) -> SavoryHeaderCell
+    func bodyCell(forPanelAt index: SavoryPanelIndex, in savoryView: SavoryView) -> SavoryBodyCell
     @objc optional func didSelect(panelAt index: SavoryPanelIndex, in savoryView: SavoryView)
     @objc optional func willCollapse(panelAt index: SavoryPanelIndex, in savoryView: SavoryView)
     @objc optional func didCollapse(panelAt index: SavoryPanelIndex, in savoryView: SavoryView)

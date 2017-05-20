@@ -9,6 +9,7 @@
 import UIKit
 
 public typealias SavoryHeaderCell = UITableViewCell
+public typealias SavoryBodyCell = UITableViewCell
 
 open class SavoryView: UITableView {
     override open var rowHeight: CGFloat {
@@ -38,7 +39,7 @@ open class SavoryView: UITableView {
         return dequeueReusableCell(withIdentifier: headerIdentifier, for: savoryDelegate.indexPathFor(headerAt: index, in: self))
     }
     
-    public func dequeueReusableBodyCell(forPanelAt index: SavoryPanelIndex) -> SavoryHeaderCell {
+    public func dequeueReusableBodyCell(forPanelAt index: SavoryPanelIndex) -> SavoryBodyCell {
         return dequeueReusableCell(withIdentifier: bodyIdentifier, for: savoryDelegate.indexPathFor(bodyAt: index, in: self))
     }
     
