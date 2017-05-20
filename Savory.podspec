@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Savory"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.summary      = "Savory is a swift accordion view library."
   s.description  = <<-DESC
   Savory is a swift accordion view library developed on top of UITableView
