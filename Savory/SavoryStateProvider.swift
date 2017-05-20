@@ -8,11 +8,18 @@
 
 public enum SavoryPanelState {
     case collapsed, expanded
+    
+    static prefix func!(operand: SavoryPanelState) -> SavoryPanelState {
+        switch operand {
+        case .expanded: return .collapsed
+        case .collapsed: return .expanded
+        }
+    }
 }
 
 public protocol SavoryStateProvider {
     var count: Int { get }
-    subscript(_: Int) -> SavoryPanelState { get }
+    subscript(_: Int) -> SavoryPanelState { get set }
 }
 
 public struct SimpleStateProvider: SavoryStateProvider {
@@ -23,7 +30,8 @@ public struct SimpleStateProvider: SavoryStateProvider {
     }
     
     public subscript(_ i: Int) -> SavoryPanelState {
-        return array[i]
+        get { return array[i] }
+        set { array[i] = newValue }
     }
     
     private var array: [SavoryPanelState]

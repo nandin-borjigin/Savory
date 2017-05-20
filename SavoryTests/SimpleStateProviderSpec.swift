@@ -27,13 +27,24 @@ class SimpleStateProviderSpec: QuickSpec {
             }
         }
         describe("subscript") {
+            var provider: SavoryStateProvider!
+            beforeEach {
+                provider = SimpleStateProvider([.expanded, .collapsed, .collapsed])
+            }
             describe("getter") {
                 it("correctly returns the array elements") {
-                    let provider = SimpleStateProvider([.expanded, .collapsed, .collapsed]) as SavoryStateProvider
                     expect(provider[0]) == SavoryPanelState.expanded
                     expect(provider[1]) == SavoryPanelState.collapsed
                     expect(provider[2]) == SavoryPanelState.collapsed
                 }
+            }
+            it("is writable") {
+                provider[0] = .collapsed
+                expect(provider[0]) == SavoryPanelState.collapsed
+                provider[1] = .expanded
+                expect(provider[1]) == SavoryPanelState.expanded
+                provider[2] = .expanded
+                expect(provider[2]) == SavoryPanelState.expanded
             }
         }
     }
