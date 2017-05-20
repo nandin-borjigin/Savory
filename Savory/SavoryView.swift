@@ -20,6 +20,11 @@ open class SavoryView: UITableView {
         get { return SavoryTableViewDataSource.shared }
         set { }
     }
+    
+    open override var delegate: UITableViewDelegate? {
+        get { return SavoryTableViewDelegate.shared }
+        set { }
+    }
    
     public var savoryDelegate: SavoryViewDelegate!
     

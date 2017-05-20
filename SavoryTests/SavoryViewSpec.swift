@@ -54,8 +54,8 @@ class SavoryViewSpec: QuickSpec {
             }
             
             describe("dataSource") {
-                it("is a instance of SavoryTableViewDataSource") {
-                    expect(view.dataSource).to(beAnInstanceOf(SavoryTableViewDataSource.self))
+                it("is identical to shared instance of SavoryTableViewDataSource") {
+                    expect(view.dataSource) === SavoryTableViewDataSource.shared
                 }
                 it("is not writable") {
                     let old = view.dataSource
@@ -64,6 +64,20 @@ class SavoryViewSpec: QuickSpec {
                     view.dataSource = new
                     expect(view.dataSource) !== new
                     expect(view.dataSource) === old
+                }
+            }
+            
+            describe("delegate") {
+                it("is identical to shared instance of SavoryTableViewDelegate") {
+                    expect(view.delegate) === SavoryTableViewDelegate.shared
+                }
+                it("is not writable") {
+                    let old = view.delegate
+                    let new = SavoryTableViewDelegate()
+                    expect(old) !== new
+                    view.delegate = new
+                    expect(view.delegate) !== new
+                    expect(view.delegate) === old
                 }
             }
             
