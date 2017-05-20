@@ -11,19 +11,45 @@ import Nimble
 import Savory
 @testable import Savory
 
-struct DummyDelegate: SavoryViewDelegate {}
+class DummyDelegate: SavoryViewDelegate {
+    weak var view: SavoryView!
+    var type: SavoryPanelType!
+    func headerCell(forPanelAt index: SavoryPanelIndex, in savoryView: SavoryView) -> UITableViewCell {
+        view = savoryView
+        type = .header(index)
+        return UITableViewCell()
+    }
+    func bodyCell(forPanelAt index: SavoryPanelIndex, in savoryView: SavoryView) -> UITableViewCell {
+        view = savoryView
+        type = .body(index)
+        return UITableViewCell()
+    }
+}
+func match(_ expectedValue: SavoryPanelType) -> MatcherFunc<SavoryPanelType> {
+    return MatcherFunc { actualExpression, failureMessage in
+        failureMessage.postfixMessage = "match <\(expectedValue)>"
+        if let actualValue = try actualExpression.evaluate() {
+            if case .header(let i) = expectedValue, case .header(let j) = actualValue {
+                return i == j
+            } else if case .body(let i) = expectedValue, case .body(let j) = actualValue {
+                return i == j
+            }
+        }
+        return false
+    }
+}
 
 class SavoryViewDelegateSpec: QuickSpec {
     override func spec() {
+        var view: SavoryView!
+        var delegate: SavoryViewDelegate!
+        beforeEach {
+            view = SavoryView()
+            view.stateProvider = SimpleStateProvider([.expanded, .collapsed, .collapsed])
+            delegate = DummyDelegate()
+        }
         describe("indexPathFor") {
-            var view: SavoryView!
-            var delegate: SavoryViewDelegate!
             let indexPath = { IndexPath(row: $0, section: 0) }
-            beforeEach {
-                view = SavoryView()
-                view.stateProvider = SimpleStateProvider([.expanded, .collapsed, .collapsed])
-                delegate = DummyDelegate()
-            }
             context("header") {
                 context("at 0") {
                     it("returns 0 - 0") {
@@ -58,6 +84,23 @@ class SavoryViewDelegateSpec: QuickSpec {
                     }
                 }
             }
+        }
+        describe("cellType") {
+            
+            let cellType: (Int, Int) -> (returns: (SavoryPanelType) -> (), dummy: ()) = { (i, j) in
+                return ({ ret in
+                    context("at \(j) - \(i) with first panel expanded and others collapsed") {
+                        it("returns \(ret)") {
+                            expect(delegate.cellType(at: IndexPath(row: j, section: i), in: view)).to(match(ret))
+                        }
+                    }
+                }, ())
+            }
+            
+            cellType(0, 0).returns(.header(0))
+            cellType(0, 1).returns(.body(0))
+            cellType(0, 2).returns(.header(1))
+            cellType(0, 3).returns(.header(2))
         }
     }
 }

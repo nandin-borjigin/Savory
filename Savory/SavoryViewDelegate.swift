@@ -6,9 +6,16 @@
 //  Copyright © 2017 Nandiin Borjigin. All rights reserved.
 //
 
-public protocol SavoryViewDelegate {}
+public protocol SavoryViewDelegate {
+    func headerCell(forPanelAt: SavoryPanelIndex, in: SavoryView) -> UITableViewCell
+    func bodyCell(forPanelAt: SavoryPanelIndex, in: SavoryView) -> UITableViewCell
+}
 
 public typealias SavoryPanelIndex = Int
+
+internal enum SavoryPanelType {
+    case header(Int), body(Int)
+}
 
 internal extension SavoryViewDelegate {
     private func actualRowCount(before index: SavoryPanelIndex, in savoryView: SavoryView) -> Int {
@@ -19,5 +26,14 @@ internal extension SavoryViewDelegate {
     }
     func indexPathFor(bodyAt index: SavoryPanelIndex, in savoryView: SavoryView) -> IndexPath {
         return IndexPath(row: actualRowCount(before: index, in: savoryView) + 1, section: 0)
+    }
+    func cellType(at indexPath: IndexPath, in savoryView: SavoryView) -> SavoryPanelType {
+        var row = 0
+        for index in 0..<savoryView.stateProvider.count {
+            if row == indexPath.row { return .header(index) }
+            else if row > indexPath.row { return .body(index - 1) }
+            row += savoryView.stateProvider[index] == .collapsed ? 1 : 2
+        }
+        return .body(savoryView.stateProvider.count - 1)
     }
 }

@@ -12,14 +12,26 @@ internal class SavoryTableViewDataSource: NSObject, UITableViewDataSource {
     static var shared = SavoryTableViewDataSource()
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return tableView.isKind(of: SavoryView.self) ? 1 : 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        guard let view = tableView as? SavoryView else { return 0 }
+        return view.stateProvider.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        guard let view = tableView as? SavoryView else {
+            precondition(false, "This data source must be used against SavoryView")
+        }
+        
+        let cellType = view.savoryDelegate.cellType(at: indexPath, in: view)
+        
+        switch cellType {
+        case .header(let i):
+            return view.savoryDelegate.headerCell(forPanelAt: i, in: view)
+        case .body(let i):
+            return view.savoryDelegate.bodyCell(forPanelAt: i, in: view)
+        }
     }
 }
